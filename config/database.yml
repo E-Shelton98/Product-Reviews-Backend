@@ -20,6 +20,10 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  port: 5432
+  host: localhost
+  username: erikshelton
+  password: postgres
 
 development:
   <<: *default
@@ -80,6 +84,5 @@ test:
 #
 production:
   <<: *default
-  database: Product_Reviews_Backend_production
-  username: Product_Reviews_Backend
-  password: <%= ENV['PRODUCT_REVIEWS_BACKEND_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  database: db/production.sqlite3
