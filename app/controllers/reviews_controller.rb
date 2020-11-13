@@ -8,14 +8,15 @@ class ReviewsController < ApplicationController
     render json: reviews
   end
 
-  # POST /reviews
+  # POST /products/:product_id/reviews
   def create
-    @review = Review.new(review_params)
+    review = Review.new(review_params)
+    review.product_id = params[:product_id]
 
-    if @review.save
-      render json: @review, status: :created, location: @review
+    if review.save
+      render json: review, status: :created
     else
-      render json: @review.errors, status: :unprocessable_entity
+      render json: review.errors, status: :unprocessable_entity
     end
   end
 
